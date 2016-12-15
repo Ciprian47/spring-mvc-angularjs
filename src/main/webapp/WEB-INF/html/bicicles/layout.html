@@ -1,0 +1,25 @@
+
+<div class="input-append">
+    <input style="width:358px; margin-left: 100px;" class="span2" type="text" ng-model="bicicleName" required="required" min="1" />
+    <button class="btn btn-primary" ng-disabled="!bicicleName" ng-click="addNewBicicle(bicicleName)">Add Bicicle</button>
+</div>
+
+<h3 style="margin-left:100px;">Bicicle List</h3>
+<div class="alert alert-info" style="width:400px;margin-left:100px;" ng-show="bicicles.length == 0">
+    No bicicles found
+</div>
+<table class="table table-bordered table-striped" style="width:450px; margin-left: 100px;" ng-show="bicicles.length > 0">
+    <thead>
+    <tr>
+        <th style="text-align: center; width: 25px;">Action</th>
+        <th style="text-align: center;">Bicicle Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="bicicle in bicicles">
+        <td  style="width:70px;text-align:center;"><button class="btn btn-mini btn-danger" ng-click="removeBicicle(bicicle)">Remove</button></td>
+        <td>{{bicicle}}</td>
+    </tr>
+    </tbody>
+</table>
+<button style="margin-left:100px;" class="btn btn-danger"  ng-show="bicicles.length > 1" ng-click="removeAllBicicles()">Remove All Bicicles</button>
