@@ -7,7 +7,7 @@ var App = angular.module('AngularSpringApp', ['AngularSpringApp.filters', 'Angul
 // Declare app level module which depends on filters, and services
 App.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/cars', {
-        templateUrl: 'cars/layout',
+        templateUrl: 'WEB-INF/html/cars/layout',
         controller: CarController
     });
 
@@ -22,11 +22,16 @@ App.config(['$routeProvider', function ($routeProvider) {
     });
 
     $routeProvider.when('/bicicles', {
-        templateUrl: 'bicicles/layout',
+        templateUrl: '/bicicles/layout.html',
         controller: BicicleController
     });
 
-    $routeProvider.otherwise({redirectTo: '/cars'});
+    $routeProvider.when('/', {
+        templateUrl: '/index.html',
+        controller: MainController
+    });
+
+    $routeProvider.otherwise({redirectTo: '/'});
 }]);
 
 var PaginationDemoCtrl = function ($scope) {

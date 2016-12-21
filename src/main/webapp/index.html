@@ -7,12 +7,24 @@
     <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css" />
 </head>
 <body>
-<div id="wrapper">
+<div id="wrapper" >
+    <a class="brand" href="#">
+        <msg key="title"></msg>
+    </a>
+    <ul class="nav nav-pills pull-right">
+        <li ng-class="activeWhen(language()=='de')">
+            <a ng-click="setLanguage('de')">Deutsch</a>
+        </li>
+        <li ng-class="activeWhen(language()=='en')">
+            <a ng-click="setLanguage('en')">English</a>
+        </li>
+    </ul>
     <ul class="menu">
         <li><a href="#/cars">Cars</a></li>
         <li><a href="#/trains">Trains</a></li>
         <li><a href="#/railwaystations">Railway Station</a></li>
         <li><a href="#/bicicles">Bicicles</a></li>
+        <li><a href="#/">teste</a></li>
     </ul>
     <hr class="" />
     <div ng-view=""></div>
