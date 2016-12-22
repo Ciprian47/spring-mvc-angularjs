@@ -4,13 +4,13 @@
 
 var AppDirectives = angular.module('AngularSpringApp.directives', []);
 
-AppDirectives.directive('appVersion', ['version', function (version) {
+App.directive('appVersion', ['version', function (version) {
     return function (scope, elm, attrs) {
         elm.text(version);
     };
 }]);
 
-AppDirectives.directive('msg', function () {
+App.directive('msg', function () {
     return {
         restrict: 'EA',
         link: function (scope, element, attrs) {
