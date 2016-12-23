@@ -12,7 +12,7 @@ var httpHeaders, message, App = angular.module('AngularSpringApp', ['AngularSpri
 //    message= angular.module('AngularSpringApp', []);
 
 // Declare app level module which depends on filters, and services
-App.config(['$routeProvider', function ($routeProvider) {
+App.config(function ($routeProvider) {
     //configure the rounting of ng-view
     $routeProvider.when('/cars', {
         controller: 'CarController',
@@ -34,15 +34,10 @@ App.config(['$routeProvider', function ($routeProvider) {
         controller: 'BicicleController'
     });
 
-    $routeProvider.when('/', {
-        //templateUrl: '',
-        controller: 'MainController'
-    });
-
     $routeProvider.otherwise({redirectTo: '/bicicles'});
-}]);
+});
 
-App.config(['$httpProvider', function ($httpProvider) {
+App.config(function ($httpProvider) {
     //configure $http to catch message responses and show them
     $httpProvider.responseInterceptors.push(function ($q) {
         var setMessage = function (response) {
@@ -97,7 +92,7 @@ App.config(['$httpProvider', function ($httpProvider) {
         };
     });
     httpHeaders = $httpProvider.defaults.headers;
-}]);
+});
 
 App.run(function ($rootScope, $http, base64) {
     //make current message accessible to root scope and therefore all scopes
