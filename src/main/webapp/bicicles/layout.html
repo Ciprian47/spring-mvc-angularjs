@@ -4,7 +4,11 @@
     <button class="btn btn-primary" ng-disabled="!bicicleName" ng-click="addNewBicicle(bicicleName)">Add Bicicle</button>
 </div>
 
-<h3 style="margin-left:100px;">Bicicle List</h3>
+<h3 style="margin-left:100px;">
+    <a class="brand" href="#">
+        <msg key="title"></msg>
+    </a>
+</h3>
 <div class="alert alert-info" style="width:400px;margin-left:100px;" ng-show="bicicles.length == 0">
     No bicicles found
 </div>

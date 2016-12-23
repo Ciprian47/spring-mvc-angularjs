@@ -6,26 +6,41 @@
     <link rel="stylesheet" href="resources/css/app.css"/>
     <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css" />
 </head>
-<body>
-<div id="wrapper">
+<body ng-controller="MainController">
+<div id="wrapper" >
+
+    <ul class="nav nav-pills pull-right">
+        <li ng-class="activeWhen(language()=='de')">
+            <a ng-click="setLanguage('de')">Deutsch</a>
+        </li>
+        <li ng-class="activeWhen(language()=='en')">
+            <a ng-click="setLanguage('en')">English</a>
+        </li>
+    </ul>
     <ul class="menu">
         <li><a href="#/cars">Cars</a></li>
         <li><a href="#/trains">Trains</a></li>
         <li><a href="#/railwaystations">Railway Station</a></li>
         <li><a href="#/bicicles">Bicicles</a></li>
+        <li><a href="#/">teste</a></li>
     </ul>
     <hr class="" />
     <div ng-view=""></div>
 </div>
 
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery.i18n.properties-min-1.0.9.js"></script>
 <script src="resources/js/lib/angular/angular.js"></script>
 <script src="resources/js/app.js"></script>
 <script src="resources/js/services.js"></script>
+<script src="resources/js/controllers/MainController.js"></script>
 <script src="resources/js/controllers/RailwayStationController.js"></script>
 <script src="resources/js/controllers/CarController.js"></script>
 <script src="resources/js/controllers/TrainController.js"></script>
 <script src="resources/js/controllers/BicicleController.js"></script>
+<script src="resources/js/controllers/MainController.js"></script>
 <script src="resources/js/filters.js"></script>
 <script src="resources/js/directives.js"></script>
+
 </body>
 </html>
