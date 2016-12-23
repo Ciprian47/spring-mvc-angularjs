@@ -15,12 +15,12 @@ var httpHeaders, message, App = angular.module('AngularSpringApp', ['AngularSpri
 App.config(function ($routeProvider) {
     //configure the rounting of ng-view
     $routeProvider.when('/cars', {
-        controller: 'CarController',
-        templateUrl: 'WEB-INF/html/cars/layout.html'
+        templateUrl: 'WEB-INF/html/cars/layout.html',
+        controller: 'CarController'
     });
 
     $routeProvider.when('/trains', {
-        templateUrl: 'trains/layout',
+        templateUrl: 'trains/layout.html',
         controller: 'TrainController'
     });
     
