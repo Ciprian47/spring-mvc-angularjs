@@ -33,4 +33,5 @@
             </sec:user-service>
         </sec:authentication-provider>
     </sec:authentication-manager>
+
 </beans>

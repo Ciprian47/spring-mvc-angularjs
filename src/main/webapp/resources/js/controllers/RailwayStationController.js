@@ -9,7 +9,7 @@ var RailwayStationController = function($scope, $http) {
     $scope.editMode = false;
 
     $scope.fetchRailwayStationsList = function() {
-        $http.get('railwaystations/railwaystationlist.json').success(function(rsList){
+        $http.get('action/railwaystations/railwaystationlist.json').success(function(rsList){
             $scope.railwaystations = rsList;
         });
     };
@@ -18,7 +18,7 @@ var RailwayStationController = function($scope, $http) {
 
         $scope.resetError();
 
-        $http.post('railwaystations/add', rs).success(function() {
+        $http.post('action/railwaystations/add', rs).success(function() {
             $scope.fetchRailwayStationsList();
             $scope.rs.name = '';
             $scope.rs.train.name = '';
@@ -32,7 +32,7 @@ var RailwayStationController = function($scope, $http) {
     $scope.updateRailwayStation = function(rs) {
         $scope.resetError();
 
-        $http.put('railwaystations/update', rs).success(function() {
+        $http.put('action/railwaystations/update', rs).success(function() {
             $scope.fetchRailwayStationsList();
             $scope.rs.name = '';
             $scope.rs.train.name = '';
@@ -53,7 +53,7 @@ var RailwayStationController = function($scope, $http) {
     $scope.removeRailwayStation = function(id) {
         $scope.resetError();
 
-        $http.delete('railwaystations/remove/' + id).success(function() {
+        $http.delete('action/railwaystations/remove/' + id).success(function() {
             $scope.fetchRailwayStationsList();
         }).error(function() {
             $scope.setError('Could not remove train');
@@ -65,7 +65,7 @@ var RailwayStationController = function($scope, $http) {
     $scope.removeAllRailwayStations = function() {
         $scope.resetError();
 
-        $http.delete('railwaystations/removeAll').success(function() {
+        $http.delete('action/railwaystations/removeAll').success(function() {
             $scope.fetchRailwayStationsList();
         }).error(function() {
             $scope.setError('Could not remove all RailwayStations');

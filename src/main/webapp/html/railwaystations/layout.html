@@ -1,4 +1,5 @@
-<div class="alert alert-error" ng-show="error">{{errorMessage}}</div>
+<div class="alert alert-error railwaystations" ng-show="error">{{errorMessage}}</div>
+<div class="railwaystations">
 <form class="form-horizontal">
 
 	<div class="control-group">
@@ -52,7 +53,6 @@
 <hr />
 <h3>Railway Stations List</h3>
 <div class="alert alert-info" ng-show="railwaystations.length == 0">No Railway Stations found</div>
-<!--<div ng-controller="PaginationDemoCtrl">-->
 
 <table class="table table-bordered table-striped" ng-show="railwaystations.length > 0">
 	<thead>
@@ -89,7 +89,7 @@
 	<button class="btn btn-info" ng-click="setPage(3)">Set current page to: 3</button>
 
 
-<!--</div>-->
+</div>
 
 		<div>jos</div>
 

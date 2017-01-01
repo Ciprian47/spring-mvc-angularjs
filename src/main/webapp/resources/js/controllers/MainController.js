@@ -28,7 +28,7 @@ var MainController = function ($scope, $rootScope, $http, i18n, $location) {
         $rootScope.user = null;
         $scope.username = $scope.password = null;
         $scope.$emit('event:logoutRequest');
-        $location.url('/person');
+        $location.url('/action/cars');
     };
 
 };
