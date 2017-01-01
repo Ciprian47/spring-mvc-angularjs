@@ -34,9 +34,4 @@
         </sec:authentication-provider>
     </sec:authentication-manager>
 
-    <!--<staticContent>-->
-        <!--<remove fileExtension=".json" />-->
-        <!--<mimeMap fileExtension=".json" mimeType="application/json" />-->
-    <!--</staticContent>-->
-
 </beans>

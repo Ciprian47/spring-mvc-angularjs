@@ -6,13 +6,15 @@
  */
 var CarController = function($scope, $http) {
     $scope.fetchCarsList = function() {
-        $http.get('html/cars/carlist.json').success(function(carList){
+        $http.get('action/cars/carlist.json').success(function(carList){
             $scope.cars = carList;
         });
     };
 
     $scope.addNewCar = function(newCar) {
-        $http.post('html/cars/addCar/' + newCar).success(function() {
+        debugger;
+        $http.post('action/cars/addCar/' + newCar).success(function() {
+            debugger;
             $scope.fetchCarsList();
         });
         $scope.carName = '';
@@ -25,7 +27,7 @@ var CarController = function($scope, $http) {
     };
 
     $scope.removeAllCars = function() {
-        $http.delete('WEB-INF/html/cars/removeAllCars').success(function() {
+        $http.delete('html/cars/removeAllCars').success(function() {
             $scope.fetchCarsList();
         });
 

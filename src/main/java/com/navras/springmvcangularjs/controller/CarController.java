@@ -23,12 +23,12 @@ public class CarController {
     @Autowired
     private CarService carService;
 
-    @RequestMapping("html/cars/carlist.json")
+    @RequestMapping("/carlist.json")
     public @ResponseBody List<String> getCarList() {
         return carService.getAllCars();
     }
 
-    @RequestMapping(value = "html/cars/addCar/{car}", method = RequestMethod.POST)
+    @RequestMapping(value = "/addCar/{car}", method = RequestMethod.POST)
     public @ResponseBody void addCar(@PathVariable("car") String car) {
         carService.addCar(car);
     }
