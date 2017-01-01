@@ -21,13 +21,13 @@ var CarController = function($scope, $http) {
     };
 
     $scope.removeCar = function(car) {
-        $http.delete('html/cars/removeCar/' + car).success(function() {
+        $http.delete('action/cars/removeCar/' + car).success(function() {
             $scope.fetchCarsList();
         });
     };
 
     $scope.removeAllCars = function() {
-        $http.delete('html/cars/removeAllCars').success(function() {
+        $http.delete('action/cars/removeAllCars').success(function() {
             $scope.fetchCarsList();
         });
 

@@ -9,7 +9,7 @@ var TrainController = function($scope, $http) {
     $scope.editMode = false;
 
     $scope.fetchTrainsList = function() {
-        $http.get('trains/trainslist.json').success(function(trainList){
+        $http.get('action/trains/trainslist.json').success(function(trainList){
             $scope.trains = trainList;
         });
     };
@@ -17,7 +17,7 @@ var TrainController = function($scope, $http) {
     $scope.addNewTrain = function(train) {
         $scope.resetError();
 
-        $http.post('trains/addTrain', train).success(function() {
+        $http.post('action/trains/addTrain', train).success(function() {
             $scope.fetchTrainsList();
             $scope.train.name = '';
             $scope.train.speed = '';
@@ -30,7 +30,7 @@ var TrainController = function($scope, $http) {
     $scope.updateTrain = function(train) {
         $scope.resetError();
 
-        $http.put('trains/updateTrain', train).success(function() {
+        $http.put('action/trains/updateTrain', train).success(function() {
             $scope.fetchTrainsList();
             $scope.train.name = '';
             $scope.train.speed = '';
@@ -50,7 +50,7 @@ var TrainController = function($scope, $http) {
     $scope.removeTrain = function(id) {
         $scope.resetError();
 
-        $http.delete('trains/removeTrain/' + id).success(function() {
+        $http.delete('action/trains/removeTrain/' + id).success(function() {
             $scope.fetchTrainsList();
         }).error(function() {
             $scope.setError('Could not remove train');
@@ -62,7 +62,7 @@ var TrainController = function($scope, $http) {
     $scope.removeAllTrains = function() {
         $scope.resetError();
 
-        $http.delete('trains/removeAllTrains').success(function() {
+        $http.delete('action/trains/removeAllTrains').success(function() {
             $scope.fetchTrainsList();
         }).error(function() {
             $scope.setError('Could not remove all trains');

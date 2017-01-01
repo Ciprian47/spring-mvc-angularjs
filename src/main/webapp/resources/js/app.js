@@ -19,22 +19,22 @@ App.config(function ($routeProvider) {
         controller: 'CarController'
     });
 
-    $routeProvider.when('/trains', {
+    $routeProvider.when('/action/trains', {
         templateUrl: 'html/trains/layout.html',
         controller: 'TrainController'
     });
     
-    $routeProvider.when('/railwaystations', {
+    $routeProvider.when('/action/railwaystations', {
         templateUrl: 'html/railwaystations/layout.html',
         controller: 'RailwayStationController'
     });
 
-    $routeProvider.when('/bicicles', {
+    $routeProvider.when('/action/bicicles', {
         templateUrl: 'html/bicicles/layout.html',
         controller: 'BicicleController'
     });
 
-    $routeProvider.otherwise({redirectTo: '/bicicles'});
+    $routeProvider.otherwise({redirectTo: '/action/bicicles'});
 });
 
 App.config(function ($httpProvider) {
