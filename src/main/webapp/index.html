@@ -5,6 +5,27 @@
     <title>Service App</title>
     <link rel="stylesheet" href="resources/css/app.css"/>
     <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css" />
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="resources/js/jquery.i18n.properties-min-1.0.9.js"></script>
+    <script src="resources/js/lib/angular/angular.js"></script>
+
+    <script src="resources/js/lib/angular/angular-route.js"></script>
+
+    <script src="resources/js/app.js"></script>
+    <script src="resources/js/services.js"></script>
+    <script src="resources/js/controllers/MainController.js"></script>
+    <script src="resources/js/controllers/RailwayStationController.js"></script>
+    <script src="resources/js/controllers/CarController.js"></script>
+    <script src="resources/js/controllers/TrainController.js"></script>
+    <script src="resources/js/controllers/BicicleController.js"></script>
+    <script src="resources/js/filters.js"></script>
+    <script src="resources/js/directives.js"></script>
+
+    <script type="text/javascript">
+        angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
+    </script>
+
 </head>
 <body ng-controller="MainController">
 <div id="wrapper" >
@@ -18,28 +39,18 @@
         </li>
     </ul>
     <ul class="menu">
-        <li><a href="#/action/cars">Cars</a></li>
-        <li><a href="#/action/trains">Trains</a></li>
-        <li><a href="#/action/railwaystations">Railway Station</a></li>
-        <li><a href="#/action/bicicles">Bicicles</a></li>
-        <li><a href="#/action/">teste</a></li>
+        <li><a href="action/cars">Cars</a></li>
+        <li><a href="action/trains">Trains</a></li>
+        <li><a href="action/railwaystations">Railway Station</a></li>
+        <li><a href="action/bicicles">Bicicles</a></li>
+        <li><a href="action/">teste</a></li>
     </ul>
     <hr class="" />
     <div ng-view=""></div>
 </div>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script type="text/javascript" src="resources/js/jquery.i18n.properties-min-1.0.9.js"></script>
-<script src="resources/js/lib/angular/angular.js"></script>
-<script src="resources/js/app.js"></script>
-<script src="resources/js/services.js"></script>
-<script src="resources/js/controllers/MainController.js"></script>
-<script src="resources/js/controllers/RailwayStationController.js"></script>
-<script src="resources/js/controllers/CarController.js"></script>
-<script src="resources/js/controllers/TrainController.js"></script>
-<script src="resources/js/controllers/BicicleController.js"></script>
-<script src="resources/js/filters.js"></script>
-<script src="resources/js/directives.js"></script>
+
+
 
 </body>
 </html>

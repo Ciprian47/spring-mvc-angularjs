@@ -2,7 +2,7 @@
 
 var AngularSpringApp = {};
 
-var httpHeaders, message, App = angular.module('AngularSpringApp', ['AngularSpringApp.filters', 'AngularSpringApp.services', 'AngularSpringApp.directives']);
+var httpHeaders, message, App = angular.module('AngularSpringApp', ['AngularSpringApp.filters', 'AngularSpringApp.services', 'AngularSpringApp.directives','ngRoute']);
 
 //var
 ////the HTTP headers to be used by all requests
@@ -12,9 +12,10 @@ var httpHeaders, message, App = angular.module('AngularSpringApp', ['AngularSpri
 //    message= angular.module('AngularSpringApp', []);
 
 // Declare app level module which depends on filters, and services
-App.config(function ($routeProvider) {
+App.config(function ($routeProvider, $locationProvider) {
     //configure the rounting of ng-view
     $routeProvider.when('/action/cars', {
+        url: 'html/cars/layout.html',
         templateUrl: 'html/cars/layout.html',
         controller: 'CarController'
     });
@@ -23,23 +24,26 @@ App.config(function ($routeProvider) {
         templateUrl: 'html/trains/layout.html',
         controller: 'TrainController'
     });
-    
+
     $routeProvider.when('/action/railwaystations', {
         templateUrl: 'html/railwaystations/layout.html',
         controller: 'RailwayStationController'
     });
 
     $routeProvider.when('/action/bicicles', {
+        url: 'html/bicicles/layout.html',
         templateUrl: 'html/bicicles/layout.html',
         controller: 'BicicleController'
     });
 
-    $routeProvider.otherwise({redirectTo: '/action/bicicles'});
+    $routeProvider.otherwise('action/bicicles');
+
+    $locationProvider.html5Mode(true);
 });
 
 App.config(function ($httpProvider) {
     //configure $http to catch message responses and show them
-    $httpProvider.responseInterceptors.push(function ($q) {
+    $httpProvider.interceptors.push(function ($q) {
         var setMessage = function (response) {
             //if the response has a text and a type property, it is a message to be shown
             if (response.data.text && response.data.type) {
@@ -67,7 +71,7 @@ App.config(function ($httpProvider) {
     });
 
     //configure $http to show a login dialog whenever a 401 unauthorized response arrives
-    $httpProvider.responseInterceptors.push(function ($rootScope, $q) {
+    $httpProvider.interceptors.push(function ($rootScope, $q) {
         return function (promise) {
             return promise.then(
                 //success -> don't intercept

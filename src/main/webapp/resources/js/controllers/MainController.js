@@ -5,7 +5,7 @@
 * @constructor
 * Celelalte controllere sunt accesate prin $routeProvider. Doar asta este accesat din ng-controller.
 */
-var MainController = function ($scope, $rootScope, $http, i18n, $location, $filter) {
+App.controller('MainController', function ($scope, $rootScope, $http, i18n, $location, $filter) {
     $scope.language = function () {
         return i18n.language;
     };
@@ -32,7 +32,7 @@ var MainController = function ($scope, $rootScope, $http, i18n, $location, $filt
     };
 
     //inceput paginatie
-    $scope.currentPage = 0;
+    $scope.currentPage = 1;
     $scope.pageSize = 10;
     $scope.data = [];
     $scope.q = '';
@@ -68,4 +68,4 @@ var MainController = function ($scope, $rootScope, $http, i18n, $location, $filt
     }
     //sfarsit paginatie
 
-};
+});

@@ -4,12 +4,12 @@
  * RailwayStationController
  * @constructor
  */
-var RailwayStationController = function($scope, $http) {
+App.controller('RailwayStationController', function($scope, $http) {
     $scope.rs = {};
     $scope.editMode = false;
 
     $scope.fetchRailwayStationsList = function() {
-        $http.get('action/railwaystations/railwaystationlist.json').success(function(rsList){
+        $http.get('action/railwaystations/railwaystationlist.json').then(function(rsList){
             $scope.railwaystations = rsList;
         });
     };
@@ -18,13 +18,13 @@ var RailwayStationController = function($scope, $http) {
 
         $scope.resetError();
 
-        $http.post('action/railwaystations/add', rs).success(function() {
+        $http.post('action/railwaystations/add', rs).then(function() {
             $scope.fetchRailwayStationsList();
             $scope.rs.name = '';
             $scope.rs.train.name = '';
             $scope.rs.train.speed = '';
             $scope.rs.train.diesel = false;
-        }).error(function() {
+        }).catch(function() {
             $scope.setError('Could not add a new station');
         });
     };
@@ -32,14 +32,14 @@ var RailwayStationController = function($scope, $http) {
     $scope.updateRailwayStation = function(rs) {
         $scope.resetError();
 
-        $http.put('action/railwaystations/update', rs).success(function() {
+        $http.put('action/railwaystations/update', rs).then(function() {
             $scope.fetchRailwayStationsList();
             $scope.rs.name = '';
             $scope.rs.train.name = '';
             $scope.rs.train.speed = '';
             $scope.rs.train.diesel = false;
             $scope.editMode = false;
-        }).error(function() {
+        }).catch(function() {
             $scope.setError('Could not update the train');
         });
     };
@@ -53,9 +53,9 @@ var RailwayStationController = function($scope, $http) {
     $scope.removeRailwayStation = function(id) {
         $scope.resetError();
 
-        $http.delete('action/railwaystations/remove/' + id).success(function() {
+        $http.delete('action/railwaystations/remove/' + id).then(function() {
             $scope.fetchRailwayStationsList();
-        }).error(function() {
+        }).catch(function() {
             $scope.setError('Could not remove train');
         });
         
@@ -65,9 +65,9 @@ var RailwayStationController = function($scope, $http) {
     $scope.removeAllRailwayStations = function() {
         $scope.resetError();
 
-        $http.delete('action/railwaystations/removeAll').success(function() {
+        $http.delete('action/railwaystations/removeAll').then(function() {
             $scope.fetchRailwayStationsList();
-        }).error(function() {
+        }).catch(function() {
             $scope.setError('Could not remove all RailwayStations');
         });
 
@@ -115,4 +115,4 @@ var RailwayStationController = function($scope, $http) {
         $scope.currentPage = 1; //reset to first paghe
     }
 
-};
+});
