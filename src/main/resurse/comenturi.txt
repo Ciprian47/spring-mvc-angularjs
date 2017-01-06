@@ -1,3 +1,3 @@
 1. Json-ul intors de pe server-side cerut de http.get() din controllere contine prea multe informatii. Ca sa il pun intr-o variabila
-   de genul $scope.cars trebuie sa fie de forma [{'key': 'value', 'secKey': 'secValue'}, {....}]. Asa ca trebuie sa pun obiectulPrimit.data.
-   TODO - de interesat... poate nu mai primesc json de pe server-side.
+   de genul $scope.cars trebuie sa fie array de obiecte de forma [{'key': 'value', 'secKey': 'secValue'}, {....}]. Asa ca trebuie sa pun obiectulPrimit.data.
+   TODO - de interesat... poate nu mai primesc json de pe server-side cum trebuie.
