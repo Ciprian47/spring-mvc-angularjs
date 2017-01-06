@@ -5,19 +5,27 @@
  * @constructor
  */
 App.controller('CarController', function($scope, $http) {
+
+    $scope.car = {};
+
     $scope.fetchCarsList = function() {
         $http.get('action/cars/carlist.json').then(function(carList){
-            $scope.cars = carList;
+            debugger;
+            $scope.cars = carList.data;
         });
     };
 
-    $scope.addNewCar = function(newCar) {
+    $scope.addNewCar = function(car) {
+        $scope.resetError();
         debugger;
-        $http.post('action/cars/addCar/' + newCar).then(function() {
+        $http.post('action/cars/addCar', car).then(function() {
             debugger;
             $scope.fetchCarsList();
+            $scope.car.name = '';
+        }).catch(function() {
+            $scope.setError('Could not add a new car');
         });
-        $scope.carName = '';
+
     };
 
     $scope.removeCar = function(car) {
@@ -31,6 +39,16 @@ App.controller('CarController', function($scope, $http) {
             $scope.fetchCarsList();
         });
 
+    };
+
+    $scope.resetError = function() {
+        $scope.error = false;
+        $scope.errorMessage = '';
+    };
+
+    $scope.setError = function(message) {
+        $scope.error = true;
+        $scope.errorMessage = message;
     };
 
     $scope.fetchCarsList();

@@ -10,7 +10,8 @@ App.controller('TrainController', function($scope, $http) {
 
     $scope.fetchTrainsList = function() {
         $http.get('action/trains/trainslist.json').then(function(trainList){
-            $scope.trains = trainList;
+            $scope.trains = trainList.data;
+            debugger;
         });
     };
 

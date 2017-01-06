@@ -1,12 +1,11 @@
 package com.navras.springmvcangularjs.controller;
 
+import com.navras.springmvcangularjs.beans.Car;
 import com.navras.springmvcangularjs.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,18 +22,18 @@ public class CarController {
     @Autowired
     private CarService carService;
 
-    @RequestMapping("/carlist.json")
-    public @ResponseBody List<String> getCarList() {
+    @RequestMapping("carlist.json")
+    public @ResponseBody List<Car> getCarList() {
         return carService.getAllCars();
     }
 
-    @RequestMapping(value = "/addCar/{car}", method = RequestMethod.POST)
-    public @ResponseBody void addCar(@PathVariable("car") String car) {
+    @RequestMapping(value = "/addCar", method = RequestMethod.POST)
+    public @ResponseBody void addCar(@RequestBody Car car) {
         carService.addCar(car);
     }
 
     @RequestMapping(value = "/removeCar/{car}", method = RequestMethod.DELETE)
-    public @ResponseBody void removeCar(@PathVariable("car") String car) {
+    public @ResponseBody void removeCar(@PathVariable("car") Car car) {
         carService.deleteCar(car);
     }
 
@@ -44,7 +43,7 @@ public class CarController {
     }
 
     @RequestMapping("/layout")
-    public String getCarPartialPage() {
+    public String getCarPartialPage(ModelMap modelMap) {
         return "cars/layout";
     }
 }
