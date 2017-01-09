@@ -2,3 +2,4 @@
 #De creat messages_ro.properties
 #De creat conexiune cu oracle DB. Analiza HIBERNATE vs OJDBC:::conexiune_db
 #De realizat login in aplicatie cu 3 useri: superadmin, admin, user:::login_aplicatie
+#De optimizat paginatie ::: paginatie_optim
