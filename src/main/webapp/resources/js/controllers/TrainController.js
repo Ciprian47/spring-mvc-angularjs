@@ -11,7 +11,6 @@ App.controller('TrainController', function($scope, $http) {
     $scope.fetchTrainsList = function() {
         $http.get('action/trains/trainslist.json').then(function(trainList){
             $scope.trains = trainList.data;
-            debugger;
         });
     };
 
@@ -96,4 +95,8 @@ App.controller('TrainController', function($scope, $http) {
     $scope.fetchTrainsList();
 
     $scope.predicate = 'id';
+
+
+    $scope.currentPage = 1;
+    $scope.pageSize = 2;
 });
