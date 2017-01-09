@@ -1,7 +1,7 @@
-
+<div ng-controller="CarController">
 <div class="input-append">
-    <input style="width:358px; margin-left: 100px;" class="span2" type="text" ng-model="carName" required="required" min="1" />
-    <button class="btn btn-primary" ng-disabled="!carName" ng-click="addNewCar(carName)">Add Car</button>
+    <input style="width:358px; margin-left: 100px;" class="span2" type="text" ng-model="car.name" required="required" min="1" />
+    <button class="btn btn-primary" ng-disabled="!car.name" ng-click="addNewCar(car)">Add Car</button>
 </div>
 
 <h3 style="margin-left:100px;">Car List</h3>
@@ -18,8 +18,9 @@
     <tbody>
         <tr ng-repeat="car in cars">
             <td  style="width:70px;text-align:center;"><button class="btn btn-mini btn-danger" ng-click="removeCar(car)">Remove</button></td>
-            <td>{{car}}</td>
+            <td>{{car.name}}</td>
         </tr>
     </tbody>
 </table>
 <button style="margin-left:100px;" class="btn btn-danger"  ng-show="cars.length > 1" ng-click="removeAllCars()">Remove All Cars</button>
+    </div>

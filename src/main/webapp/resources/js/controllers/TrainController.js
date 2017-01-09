@@ -4,25 +4,25 @@
  * TrainController
  * @constructor
  */
-var TrainController = function($scope, $http) {
+App.controller('TrainController', function($scope, $http) {
     $scope.train = {};
     $scope.editMode = false;
 
     $scope.fetchTrainsList = function() {
-        $http.get('action/trains/trainslist.json').success(function(trainList){
-            $scope.trains = trainList;
+        $http.get('action/trains/trainslist.json').then(function(trainList){
+            $scope.trains = trainList.data;
         });
     };
 
     $scope.addNewTrain = function(train) {
         $scope.resetError();
 
-        $http.post('action/trains/addTrain', train).success(function() {
+        $http.post('action/trains/addTrain', train).then(function() {
             $scope.fetchTrainsList();
             $scope.train.name = '';
             $scope.train.speed = '';
             $scope.train.diesel = '';
-        }).error(function() {
+        }).catch(function() {
             $scope.setError('Could not add a new train');
         });
     };
@@ -30,13 +30,13 @@ var TrainController = function($scope, $http) {
     $scope.updateTrain = function(train) {
         $scope.resetError();
 
-        $http.put('action/trains/updateTrain', train).success(function() {
+        $http.put('action/trains/updateTrain', train).then(function() {
             $scope.fetchTrainsList();
             $scope.train.name = '';
             $scope.train.speed = '';
             $scope.train.diesel = false;
             $scope.editMode = false;
-        }).error(function() {
+        }).catch(function() {
             $scope.setError('Could not update the train');
         });
     };
@@ -50,9 +50,9 @@ var TrainController = function($scope, $http) {
     $scope.removeTrain = function(id) {
         $scope.resetError();
 
-        $http.delete('action/trains/removeTrain/' + id).success(function() {
+        $http.delete('action/trains/removeTrain/' + id).then(function() {
             $scope.fetchTrainsList();
-        }).error(function() {
+        }).catch(function() {
             $scope.setError('Could not remove train');
         });
         $scope.train.name = '';
@@ -62,9 +62,9 @@ var TrainController = function($scope, $http) {
     $scope.removeAllTrains = function() {
         $scope.resetError();
 
-        $http.delete('action/trains/removeAllTrains').success(function() {
+        $http.delete('action/trains/removeAllTrains').then(function() {
             $scope.fetchTrainsList();
-        }).error(function() {
+        }).catch(function() {
             $scope.setError('Could not remove all trains');
         });
 
@@ -95,4 +95,8 @@ var TrainController = function($scope, $http) {
     $scope.fetchTrainsList();
 
     $scope.predicate = 'id';
-};
+
+
+    $scope.currentPage = 1;
+    $scope.pageSize = 2;
+});
