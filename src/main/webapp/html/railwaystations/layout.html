@@ -81,19 +81,19 @@
 	</tbody>
 </table>
 
-	<div style="display: inline-flex">
+	<div style="display: inline-flex;">
 		<div  style="display: inline-block">
 			<button class="btn btn-danger" style="margin-top: 19px" ng-show="railwaystations.length > 1" ng-click="removeAllRailwayStations()">Remove All stations</button>		</div>
-
-		<div style="display: inline-block">
+<!--paginatie-->
+		<div style="display: inline-block; margin-left: 20px">
 			<msg key="items_page"></msg>
 			<input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
 		</div>
 
-		<div style="display: inline-block">
+		<div style="display: inline-block; margin-left: 20px">
 			<dir-pagination-controls boundary-links="true" auto-hide="false" template-url="html/template/pagination/pagination.tpl.html"></dir-pagination-controls>
 		</div>
-
+<!--paginatie-->
 
 	</div>
 </div>

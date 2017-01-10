@@ -48,8 +48,8 @@
 </div>
 <table class="table table-bordered table-striped" ng-show="trains.length > 0">
     <thead>
-        <tr>
-            <th style="text-align: center; width: 25px;">Id</th>
+        <tr style="cursor: hand">
+            <th style="text-align: center;cursor: pointer; width: 25px;">Id</th>
             <th ng-click="orderBy('name')" style="text-align: center;"><msg key="train_name"></msg><span ng-class="orderIcon('name')"></span></th>
             <th ng-click="orderBy('speed')" style="text-align: center;">Speed<i ng-class="orderIcon('speed')">&nbsp</i></th>
             <th style="text-align: center;">Diesel</th>
@@ -70,20 +70,20 @@
     </tbody>
 </table>
 
-<div style="display: inline-flex">
+<div style="display: inline-flex;">
     <div  style="display: inline-block">
         <button class="btn btn-danger"  style="margin-top: 19px" ng-show="trains.length > 1" ng-click="removeAllTrains()">Remove All Trains</button>
     </div>
-
-    <div style="display: inline-block">
+<!--paginatie-->
+    <div style="display: inline-block; margin-left: 20px">
         <msg key="items_page"></msg>
         <input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
     </div>
 
-    <div style="display: inline-block">
+    <div style="display: inline-block; margin-left: 20px">
         <dir-pagination-controls boundary-links="true" auto-hide="false" template-url="html/template/pagination/pagination.tpl.html"></dir-pagination-controls>
     </div>
-
+<!--paginatie-->
 
 </div>
 

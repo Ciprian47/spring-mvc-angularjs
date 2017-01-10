@@ -18,4 +18,5 @@ Low priority
 ---
 #De implementat resurse text in placeholder ::: i18n_placeholder
 #De creat messages_ro.properties
+#De adaugat GIF la http request si atunci cand se populeaza un obiect cu informatii ::: loading_gif
 
