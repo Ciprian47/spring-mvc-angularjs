@@ -58,14 +58,14 @@
 	<thead>
 		<tr>
 			<th style="text-align: center; width: 25px;">Id</th>
- 			<th style="text-align: center;">Name</th>
+ 			<th ng-click="orderBy('name')" style="text-align: center;">Name<span ng-class="orderIcon('name')"></span></th>
 			<th style="text-align: center;">Speed</th>
 			<th style="text-align: center;">Diesel</th>
  			<th style="text-align: center;">Action</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="item in railwaystations.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+		<tr dir-paginate="item in railwaystations | itemsPerPage: pageSize | orderBy: order">
 			<td style="text-align: center;">{{item.id}}</td>
 			<td>{{item.name}}</td>
 			<td>{{item.train.speed}}</td>
@@ -80,29 +80,21 @@
 		</tr>
 	</tbody>
 </table>
-<button class="btn btn-danger" ng-show="railwaystations.length > 1"
-	ng-click="removeAllRailwayStations()">Remove All stations</button>
-	View <select ng-model="viewby" ng-change="setItemsPerPage(viewby)"><option>3</option><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option></select> records at a time.
 
-	<pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm" items-per-page="itemsPerPage"></pagination>
-	<pre>The selected page no: {{currentPage}}</pre>
-	<button class="btn btn-info" ng-click="setPage(3)">Set current page to: 3</button>
+	<div style="display: inline-flex;">
+		<div  style="display: inline-block">
+			<button class="btn btn-danger" style="margin-top: 19px" ng-show="railwaystations.length > 1" ng-click="removeAllRailwayStations()">Remove All stations</button>		</div>
+<!--paginatie-->
+		<div style="display: inline-block; margin-left: 20px">
+			<msg key="items_page"></msg>
+			<input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
+		</div>
 
+		<div style="display: inline-block; margin-left: 20px">
+			<dir-pagination-controls boundary-links="true" auto-hide="false" template-url="html/template/pagination/pagination.tpl.html"></dir-pagination-controls>
+		</div>
+<!--paginatie-->
 
+	</div>
 </div>
 
-		<div>jos</div>
-
-<div ng-controller="PaginationDemoCtrl">
-	<table class="table">
-		<tr ng-repeat="row in data.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
-			<td>{{row.name}}</td>
-			<td>{{row.id}}</td>
-		</tr>
-	</table>
-	View <select ng-model="viewby" ng-change="setItemsPerPage(viewby)"><option>3</option><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option></select> records at a time.
-	<pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm" items-per-page="itemsPerPage"></pagination>
-
-	<pre>The selected page no: {{currentPage}}</pre>
-
-</div>

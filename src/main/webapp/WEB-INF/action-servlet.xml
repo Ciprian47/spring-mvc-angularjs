@@ -16,7 +16,7 @@
     <mvc:annotation-driven/>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-          p:prefix="/html/"
+          p:prefix="/WEB-INF/html/"
           p:suffix=".html" >
     </bean>
 

@@ -19,7 +19,7 @@ App.service('i18n', function () {
             }
         });
     };
-    this.setLanguage('de');
+    this.setLanguage('en');
 });
 
 App.service('base64', function () {

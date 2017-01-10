@@ -31,41 +31,18 @@ App.controller('MainController', function ($scope, $rootScope, $http, i18n, $loc
         $location.url('/action/cars');
     };
 
-    //inceput paginatie
+    //paginatie
     $scope.currentPage = 1;
-    $scope.pageSize = 10;
-    $scope.data = [];
-    $scope.q = '';
+    $scope.pageSize = 5;
+    $scope.order = '+';
 
-    $scope.getData = function () {
-        // needed for the pagination calc
-        // https://docs.angularjs.org/api/ng/filter/filter
-        return $filter('filter')($scope.data, $scope.q);
-        /*
-         // manual filter
-         // if u used this, remove the filter from html, remove above line and replace data with getData()
-
-         var arr = [];
-         if($scope.q == '') {
-         arr = $scope.data;
-         } else {
-         for(var ea in $scope.data) {
-         if($scope.data[ea].indexOf($scope.q) > -1) {
-         arr.push( $scope.data[ea] );
-         }
-         }
-         }
-         return arr;
-         */
+    $scope.orderBy = function (property) {
+        $scope.order = ($scope.order[0] === '+' ? '-' : '+') + property;
     };
 
-    $scope.numberOfPages=function(){
-        return Math.ceil($scope.getData().length/$scope.pageSize);
+    $scope.orderIcon = function (property) {
+        return property === $scope.order.substring(1) ? $scope.order[0] === '+' ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down' : '';
     };
-
-    for (var i=0; i<65; i++) {
-        $scope.data.push("Item "+i);
-    }
-    //sfarsit paginatie
+    //paginatie
 
 });

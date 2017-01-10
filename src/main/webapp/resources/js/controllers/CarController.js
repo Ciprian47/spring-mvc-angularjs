@@ -10,16 +10,13 @@ App.controller('CarController', function($scope, $http) {
 
     $scope.fetchCarsList = function() {
         $http.get('action/cars/carlist.json').then(function(carList){
-            debugger;
             $scope.cars = carList.data;
         });
     };
 
     $scope.addNewCar = function(car) {
         $scope.resetError();
-        debugger;
         $http.post('action/cars/addCar', car).then(function() {
-            debugger;
             $scope.fetchCarsList();
             $scope.car.name = '';
         }).catch(function() {
