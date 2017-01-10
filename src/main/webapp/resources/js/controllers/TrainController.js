@@ -94,9 +94,7 @@ App.controller('TrainController', function($scope, $http) {
 
     $scope.fetchTrainsList();
 
-    $scope.predicate = 'id';
+    //$scope.predicate = 'speed';
 
 
-    $scope.currentPage = 1;
-    $scope.pageSize = 2;
 });

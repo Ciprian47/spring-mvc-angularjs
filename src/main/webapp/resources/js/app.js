@@ -14,31 +14,37 @@ var httpHeaders, message, App = angular.module('AngularSpringApp', ['AngularSpri
 // Declare app level module which depends on filters, and services
 App.config(function ($routeProvider, $locationProvider) {
     //configure the rounting of ng-view
-    $routeProvider.when('/action/cars', {
-        url: 'html/cars/layout.html',
+    $routeProvider.when('/cars', {
         templateUrl: 'html/cars/layout.html',
         controller: 'CarController'
     });
 
-    $routeProvider.when('/action/trains', {
+    $routeProvider.when('/trains', {
         templateUrl: 'html/trains/layout.html',
         controller: 'TrainController'
     });
 
-    $routeProvider.when('/action/railwaystations', {
+    $routeProvider.when('/railwaystations', {
         templateUrl: 'html/railwaystations/layout.html',
         controller: 'RailwayStationController'
     });
 
-    $routeProvider.when('/action/bicicles', {
+    $routeProvider.when('/bicicles', {
         url: 'html/bicicles/layout.html',
         templateUrl: 'html/bicicles/layout.html',
         controller: 'BicicleController'
     });
 
-    $routeProvider.otherwise('action/bicicles');
+    $routeProvider.when('/action/teste', {
+        url: 'html/teste/teste.html',
+        templateUrl: 'html/teste/teste.html'
+        //controller: 'BicicleController'
+    });
+
+    $routeProvider.otherwise('/cars');
 
     $locationProvider.html5Mode(true);
+
 });
 
 App.config(function ($httpProvider) {

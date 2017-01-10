@@ -10,7 +10,7 @@
     <div class="train" ng-show="shtrain">
     <form class="form-horizontal">
     <div class="control-group">
-        <label class="control-label" for="inputEmail">Train Name</label>
+        <label class="control-label" for="inputEmail"><msg key="train_name"></msg></label>
 
         <div class="controls">
             <input type="text" id="inputEmail" ng-model="train.name" placeholder="Train Name" required="required" min="2" />
@@ -46,56 +46,45 @@
 <div class="alert alert-info" ng-show="trains.length == 0">
     No trains found
 </div>
-<!--<table class="table table-bordered table-striped" ng-show="trains.length > 0">-->
-    <!--<thead>-->
-        <!--<tr>-->
-            <!--<th style="text-align: center; width: 25px;">Id</th>-->
-            <!--<th style="text-align: center;">Name</th>-->
-            <!--<th style="text-align: center;">Speed</th>-->
-            <!--<th style="text-align: center;">Diesel</th>-->
-            <!--<th style="text-align: center;">Action</th>-->
-        <!--</tr>-->
-    <!--</thead>-->
-    <!--<tbody>-->
-        <!--<tr class="hoverme" dir-paginate="train in trains | filter:q | itemsPerPage: pageSize | orderBy:predicate" current-page="currentPage" >-->
-            <!--<td class="hoverme2" style="text-align: center;">{{train.id}}</td>-->
-            <!--<td class="hoverme2" >{{train.name}}</td>-->
-            <!--<td class="hoverme2" >{{train.speed}}</td>-->
-            <!--<td class="hoverme2"  style="text-align: center;width: 20px;"><span ng-show="train.diesel" class="icon-ok"></span></td>-->
-            <!--<td class="hoverme2"  style="width:100px;text-align: center;">-->
-                <!--<button class="btn btn-mini btn-danger buton" ng-click="removeTrain(train.id)">Remove</button>-->
-                <!--<button class="btn btn-mini btn-success buton" ng-click="editTrain(train)">Edit</button>-->
-            <!--</td>-->
-        <!--</tr>-->
-    <!--</tbody>-->
-<!--</table>-->
-    <ul>
-        <li dir-paginate="train in trains | filter:q | itemsPerPage: pageSize " current-page="currentPage">{{train.name}}</li>
-    </ul>
-<button class="btn btn-danger" ng-show="trains.length > 1" ng-click="removeAllTrains()">Remove All Trains</button>
-</div>
-<div>----------</div>
+<table class="table table-bordered table-striped" ng-show="trains.length > 0">
+    <thead>
+        <tr>
+            <th style="text-align: center; width: 25px;">Id</th>
+            <th ng-click="orderBy('name')" style="text-align: center;"><msg key="train_name"></msg><span ng-class="orderIcon('name')"></span></th>
+            <th ng-click="orderBy('speed')" style="text-align: center;">Speed<i ng-class="orderIcon('speed')">&nbsp</i></th>
+            <th style="text-align: center;">Diesel</th>
+            <th style="text-align: center;">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="hoverme" dir-paginate="train in trains | filter:q | itemsPerPage: pageSize | orderBy: order" current-page="currentPage" >
+            <td class="hoverme2" style="text-align: center;">{{train.id}}</td>
+            <td class="hoverme2" >{{train.name}}</td>
+            <td class="hoverme2" >{{train.speed}}</td>
+            <td class="hoverme2"  style="text-align: center;width: 20px;"><span ng-show="train.diesel" class="icon-ok"></span></td>
+            <td class="hoverme2"  style="width:100px;text-align: center;">
+                <button class="btn btn-mini btn-danger buton" ng-click="removeTrain(train.id)">Remove</button>
+                <button class="btn btn-mini btn-success buton" ng-click="editTrain(train)">Edit</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
-<div  class="other-controller">
-    <small>this is in "OtherController"</small>
-    <div class="text-center">
-        <dir-pagination-controls boundary-links="true" auto-hide="false" template-url="dirPagination.tpl.html"></dir-pagination-controls>
+<div style="display: inline-flex">
+    <div  style="display: inline-block">
+        <button class="btn btn-danger"  style="margin-top: 19px" ng-show="trains.length > 1" ng-click="removeAllTrains()">Remove All Trains</button>
     </div>
-</div>
 
-<div>----------</div>
-
-
-<div class="row">
-    <div class="col-xs-4">
-        <h3>Meals Page: {{ currentPage }}</h3>
-    </div>
-    <div class="col-xs-4">
-        <label for="search">Search:</label>
-        <input ng-model="q" id="search" class="form-control" placeholder="Filter text">
-    </div>
-    <div class="col-xs-4">
-        <label for="search">items per page:</label>
+    <div style="display: inline-block">
+        <msg key="items_page"></msg>
         <input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
     </div>
+
+    <div style="display: inline-block">
+        <dir-pagination-controls boundary-links="true" auto-hide="false" template-url="html/template/pagination/pagination.tpl.html"></dir-pagination-controls>
+    </div>
+
+
+</div>
+
 </div>

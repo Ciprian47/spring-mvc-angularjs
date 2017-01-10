@@ -1,5 +1,21 @@
-#De reparat conexiune client side - server side pe noua configuratie xml:::impl_xml_config - DONE
-#De creat messages_ro.properties
+High priority
+---
+DONE - De reparat conexiune client side - server side pe noua configuratie xml:::impl_xml_config
 #De creat conexiune cu oracle DB. Analiza HIBERNATE vs OJDBC:::conexiune_db
 #De realizat login in aplicatie cu 3 useri: superadmin, admin, user:::login_aplicatie
+#De reparat url link in aplicatie ::: url_link
+
+
+Medium Priority
+---
+#De creat pagina de login ::: login_page
+#De implementat dialoguri ::: tmpl_dialog
 #De optimizat paginatie ::: paginatie_optim
+#De optimizat filtrele, sa se faca inainte de paginatie ::: filtre_pagin
+
+
+Low priority
+---
+#De implementat resurse text in placeholder ::: i18n_placeholder
+#De creat messages_ro.properties
+
