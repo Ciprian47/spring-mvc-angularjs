@@ -10,7 +10,7 @@ Medium Priority
 ---
 #De creat pagina de login ::: login_page
 #De implementat dialoguri ::: tmpl_dialog
-#De optimizat paginatie ::: paginatie_optim
+DONE - De optimizat paginatie ::: paginatie_optim
 #De optimizat filtrele, sa se faca inainte de paginatie ::: filtre_pagin
 
 
