@@ -10,6 +10,7 @@ App.controller('RailwayStationController', function($scope, $http) {
 
     $scope.fetchRailwayStationsList = function() {
         $http.get('action/railwaystations/railwaystationlist.json').then(function(rsList){
+            debugger;
             $scope.railwaystations = rsList.data;
         });
     };

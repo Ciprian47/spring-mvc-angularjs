@@ -1,6 +1,8 @@
 package com.navras.springmvcangularjs.service;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -15,8 +17,8 @@ import com.navras.springmvcangularjs.beans.RailwayStation;
 @Service("RailwayStationService")
 public class RailwayStationServiceImpl implements RailwayStationService {
     
-    private static List<RailwayStation> rsList = new ArrayList<RailwayStation>();
-    private static Long id = 0L;
+    private List<RailwayStation> rsList = new ArrayList<RailwayStation>();
+    private Long id = 0L;
     final Logger logger  = LoggerFactory.getLogger("RailwayStationServiceImpl");
 
     public RailwayStation getRailwayStationById(Long id) {
@@ -70,13 +72,34 @@ public class RailwayStationServiceImpl implements RailwayStationService {
         File[] children = file.listFiles();
         if (children != null) {
             for (File child : children) {
-                railwayStation.setId(++id);
-                railwayStation.setName(child.toPath().toAbsolutePath().toString());
-                rsList.add(railwayStation);
+                boolean isFile = Files.isRegularFile(child.toPath());
+                if (isFile) {
+                    splitPath(child.toPath());
+                }
                 addTree(child, all, railwayStation);
 
             }
         }
+    }
+
+    public void splitPath(Path path){
+        String fullPath=path.toString();
+        String fileName="";
+        String pathName="";
+        String fileExtension="";
+        RailwayStation railwayStation = new RailwayStation();
+
+        railwayStation.setId(++id);
+        fileName = fullPath.substring(fullPath.lastIndexOf("\\") + 1);
+        pathName = fullPath.substring(0,fullPath.lastIndexOf("\\"));
+        fileExtension = fullPath.substring(fullPath.lastIndexOf("."));
+
+        railwayStation.setName(fileName);
+        railwayStation.setPath(pathName);
+        railwayStation.setExtension(fileExtension);
+
+        rsList.add(railwayStation);
+
     }
 	
     @Override
