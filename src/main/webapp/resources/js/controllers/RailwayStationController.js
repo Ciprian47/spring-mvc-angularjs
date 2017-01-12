@@ -58,14 +58,13 @@ App.controller('RailwayStationController', function($scope, $http) {
                     secCount = 0;
                 }
 
+                /* memmory contains more elements */
                 if (indexCount > 1 && secCount == 0) {
-                    /* memmory contains more elements */
+                    var getDupli = memmory.filter(function(e) { return e.name == memmory[i].name; });
+                    var j = 0;
 
-                        var getDupli = memmory.filter(function(e) { return e.name == memmory[i].name; });
-                        var j = 0;
                     for (j; j<getDupli.length; j++){
                         ss.push(getDupli[j]);
-
                     }
 
                 }

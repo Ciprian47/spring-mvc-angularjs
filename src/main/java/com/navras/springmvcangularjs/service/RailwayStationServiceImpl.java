@@ -99,7 +99,6 @@ public class RailwayStationServiceImpl implements RailwayStationService {
         }finally {
             fileName = fullPath.substring(fullPath.lastIndexOf("\\") + 1);
             pathName = fullPath.substring(0, fullPath.lastIndexOf("\\"));
-            railwayStation.setExtension("");
 
             railwayStation.setName(fileName);
             railwayStation.setPath(pathName);
