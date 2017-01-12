@@ -88,18 +88,24 @@ public class RailwayStationServiceImpl implements RailwayStationService {
         String pathName="";
         String fileExtension="";
         RailwayStation railwayStation = new RailwayStation();
-
         railwayStation.setId(++id);
-        fileName = fullPath.substring(fullPath.lastIndexOf("\\") + 1);
-        pathName = fullPath.substring(0,fullPath.lastIndexOf("\\"));
-        fileExtension = fullPath.substring(fullPath.lastIndexOf("."));
 
-        railwayStation.setName(fileName);
-        railwayStation.setPath(pathName);
-        railwayStation.setExtension(fileExtension);
+        try {
+            fileExtension = fullPath.substring(fullPath.lastIndexOf("."));
+            railwayStation.setExtension(fileExtension);
 
-        rsList.add(railwayStation);
+        }catch(Exception e){
+//            e.printStackTrace();
+        }finally {
+            fileName = fullPath.substring(fullPath.lastIndexOf("\\") + 1);
+            pathName = fullPath.substring(0, fullPath.lastIndexOf("\\"));
+            railwayStation.setExtension("");
 
+            railwayStation.setName(fileName);
+            railwayStation.setPath(pathName);
+            rsList.add(railwayStation);
+
+        }
     }
 	
     @Override

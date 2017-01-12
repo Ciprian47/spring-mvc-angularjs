@@ -65,3 +65,14 @@
 /*{*/
     /*background-color:green;*/
 /*}*/
+/*.reactive:focus {*/
+    /*outline-color: #761c19 !important;*/
+/*}*/
+
+
+/*setari generale butoane*/
+button, input[type="button"], input[type="submit"] {
+    outline-color: #ffffff !important;
+
+}
+/*--*/

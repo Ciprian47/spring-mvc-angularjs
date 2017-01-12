@@ -20,13 +20,13 @@
 			<button type="button" class="btn btn-primary"
 				ng-disabled="!rs.train.name || !rs.train.speed" ng-show="editMode"
 				ng-click="updateRailwayStation(rs)">Save files</button>
-			<button type="button" class="btn" ng-click="resetRailwayStationForm()">Reset</button>
+			<button type="button" class="btn {{clasa}}" ng-click="showDuplicates()">Duplicates</button>
 		</div>
 	</div>
 </form>
 <hr />
-<h3>Railway Stations List</h3>
-<div class="alert alert-info" ng-show="railwaystations.length == 0">No Railway Stations found</div>
+<h3>File List</h3>
+<div class="alert alert-info" ng-show="railwaystations.length == 0">No Files found</div>
 
 <table class="table table-bordered table-striped" ng-show="railwaystations.length > 0">
 	<thead>
