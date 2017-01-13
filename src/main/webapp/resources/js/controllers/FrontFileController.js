@@ -1,33 +1,33 @@
 'use strict';
 
 /**
- * RailwayStationController
+ * frontfileController
  * @constructor
  */
-App.controller('RailwayStationController', function($scope, $http) {
+App.controller('FrontFileController', function($scope, $http) {
     $scope.rs = {};
     $scope.editMode = false;
     $scope.secondClick=0;
     $scope.clasa='';
 
-    $scope.fetchRailwayStationsList = function() {
-        $http.get('action/railwaystations/railwaystationlist.json').then(function(rsList){
+    $scope.fetchFrontFilesList = function() {
+        $http.get('action/frontfiles/frontfilelist.json').then(function(rsList){
             debugger;
-            $scope.railwaystations = rsList.data;
+            $scope.frontfiles = rsList.data;
         });
     };
 
-    $scope.addNewRailwayStation = function(rs) {
+    $scope.addNewFrontFile = function(rs) {
 
         $scope.resetError();
 
-        $http.post('action/railwaystations/add', rs).then(function() {
-            $scope.fetchRailwayStationsList();
+        $http.post('action/frontfiles/add', rs).then(function() {
+            $scope.fetchFrontFilesList();
             $scope.rs.name = '';
             $scope.rs.extension = '';
             $scope.rs.path = '';
         }).catch(function() {
-            $scope.setError('Could not add a new station');
+            $scope.setError('Could not sinc files');
         });
     };
 
@@ -41,7 +41,7 @@ App.controller('RailwayStationController', function($scope, $http) {
             $scope.mm = {};
 
             var ss = [];
-            var memmory = $scope.railwaystations;
+            var memmory = $scope.frontfiles;
             var i = 0;
             var k = -1;
 
@@ -71,26 +71,26 @@ App.controller('RailwayStationController', function($scope, $http) {
 
             }
             debugger;
-            $scope.railwaystations = ss;
+            $scope.frontfiles = ss;
 
             ss = [];
         }else {
             $scope.clasa='';
-            $scope.fetchRailwayStationsList();
+            $scope.fetchFrontFilesList();
         }
     };
 
-    $scope.editRailwayStation = function(rs) {
+    $scope.editFrontFile = function(rs) {
         $scope.resetError();
         $scope.rs = rs;
         $scope.editMode = true;
     };
 
-    $scope.removeRailwayStation = function(id) {
+    $scope.removeFrontFile = function(id) {
         $scope.resetError();
 
-        $http.delete('action/railwaystations/remove/' + id).then(function() {
-            $scope.fetchRailwayStationsList();
+        $http.delete('action/frontfiles/remove/' + id).then(function() {
+            $scope.fetchFrontFilesList();
         }).catch(function() {
             $scope.setError('Could not remove train');
         });
@@ -98,18 +98,18 @@ App.controller('RailwayStationController', function($scope, $http) {
         $scope.rs = '';
     };
 
-    $scope.removeAllRailwayStations = function() {
+    $scope.removeAllFrontFiles = function() {
         $scope.resetError();
 
-        $http.delete('action/railwaystations/removeAll').then(function() {
-            $scope.fetchRailwayStationsList();
+        $http.delete('action/frontfiles/removeAll').then(function() {
+            $scope.fetchFrontFilesList();
         }).catch(function() {
-            $scope.setError('Could not remove all RailwayStations');
+            $scope.setError('Could not remove all FrontFiles');
         });
 
     };
 
-    $scope.resetRailwayStationForm = function() {
+    $scope.resetFrontFileForm = function() {
         $scope.resetError();
         $scope.rs = {};
         $scope.editMode = false;
@@ -125,7 +125,7 @@ App.controller('RailwayStationController', function($scope, $http) {
         $scope.errorMessage = message;
     };
 
-    $scope.fetchRailwayStationsList();
+    $scope.fetchFrontFilesList();
 
     $scope.predicate = 'id';
 

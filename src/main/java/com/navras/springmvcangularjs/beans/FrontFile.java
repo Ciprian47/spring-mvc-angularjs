@@ -1,6 +1,6 @@
 package com.navras.springmvcangularjs.beans;
 //gfdg
-public class RailwayStation {
+public class FrontFile {
 
 	
 	private Long id;

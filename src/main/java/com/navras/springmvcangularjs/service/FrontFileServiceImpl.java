@@ -11,23 +11,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.navras.springmvcangularjs.beans.RailwayStation;
+import com.navras.springmvcangularjs.beans.FrontFile;
 
 
-@Service("RailwayStationService")
-public class RailwayStationServiceImpl implements RailwayStationService {
+@Service("FrontFileService")
+public class FrontFileServiceImpl implements FrontFileService {
     
-    private List<RailwayStation> rsList = new ArrayList<RailwayStation>();
+    private List<FrontFile> rsList = new ArrayList<FrontFile>();
     private Long id = 0L;
-    final Logger logger  = LoggerFactory.getLogger("RailwayStationServiceImpl");
+    final Logger logger  = LoggerFactory.getLogger("FrontFileServiceImpl");
 
-    public RailwayStation getRailwayStationById(Long id) {
+    public FrontFile getFrontFileById(Long id) {
     	
-    	return findRailwayStationById(id);
+    	return findFrontFileById(id);
     }
 
-    private RailwayStation findRailwayStationById(Long id) {
-        for (RailwayStation rs : rsList) {
+    private FrontFile findFrontFileById(Long id) {
+        for (FrontFile rs : rsList) {
             if (rs.getId() == id) {
                 return rs;
             }
@@ -36,22 +36,22 @@ public class RailwayStationServiceImpl implements RailwayStationService {
         return null;
     }
 
-	public List<RailwayStation> getAllRailwayStations() {		
+	public List<FrontFile> getAllFrontFiles() {
 		return rsList;
 	}
 
 
-	public void addRailwayStation(RailwayStation railwayStation) {
+	public void addFrontFile(FrontFile frontFile) {
         Collection<File> all = new ArrayList<File>();
         logger.info("Started : {}",System.currentTimeMillis());
 
-        addTree(new File(railwayStation.getName()), all, railwayStation);
+        addTree(new File(frontFile.getName()), all, frontFile);
         logger.info("Ended : {}", System.currentTimeMillis());
 
 	}
 
-	public void deleteRailwayStationById(Long id) {
-        RailwayStation found = findRailwayStationById(id);
+	public void deleteFrontFileById(Long id) {
+        FrontFile found = findFrontFileById(id);
         if (found != null) {
             rsList.remove(found);
             id--;
@@ -59,15 +59,15 @@ public class RailwayStationServiceImpl implements RailwayStationService {
 		
 	}
 
-	public void updateRailwayStation(RailwayStation railwayStation) {
-        RailwayStation found = findRailwayStationById(railwayStation.getId());
+	public void updateFrontFile(FrontFile frontFile) {
+        FrontFile found = findFrontFileById(frontFile.getId());
         if (found != null) {
             rsList.remove(found);
-            rsList.add(railwayStation);
+            rsList.add(frontFile);
         }
 	}
 
-    public void addTree(File file, Collection<File> all, RailwayStation railwayStation) {
+    public void addTree(File file, Collection<File> all, FrontFile frontFile) {
 
         File[] children = file.listFiles();
         if (children != null) {
@@ -76,7 +76,7 @@ public class RailwayStationServiceImpl implements RailwayStationService {
                 if (isFile) {
                     splitPath(child.toPath());
                 }
-                addTree(child, all, railwayStation);
+                addTree(child, all, frontFile);
 
             }
         }
@@ -87,12 +87,12 @@ public class RailwayStationServiceImpl implements RailwayStationService {
         String fileName="";
         String pathName="";
         String fileExtension="";
-        RailwayStation railwayStation = new RailwayStation();
-        railwayStation.setId(++id);
+        FrontFile frontFile = new FrontFile();
+        frontFile.setId(++id);
 
         try {
             fileExtension = fullPath.substring(fullPath.lastIndexOf("."));
-            railwayStation.setExtension(fileExtension);
+            frontFile.setExtension(fileExtension);
 
         }catch(Exception e){
 //            e.printStackTrace();
@@ -100,9 +100,9 @@ public class RailwayStationServiceImpl implements RailwayStationService {
             fileName = fullPath.substring(fullPath.lastIndexOf("\\") + 1);
             pathName = fullPath.substring(0, fullPath.lastIndexOf("\\"));
 
-            railwayStation.setName(fileName);
-            railwayStation.setPath(pathName);
-            rsList.add(railwayStation);
+            frontFile.setName(fileName);
+            frontFile.setPath(pathName);
+            rsList.add(frontFile);
 
         }
     }

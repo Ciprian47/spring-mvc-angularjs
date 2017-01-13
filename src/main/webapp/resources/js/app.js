@@ -24,9 +24,9 @@ App.config(function ($routeProvider, $locationProvider) {
         controller: 'TrainController'
     });
 
-    $routeProvider.when('/railwaystations', {
-        templateUrl: 'html/railwaystations/layout.html',
-        controller: 'RailwayStationController'
+    $routeProvider.when('/frontfiles', {
+        templateUrl: 'html/frontfiles/layout.html',
+        controller: 'FrontFileController'
     });
 
     $routeProvider.when('/bicicles', {
