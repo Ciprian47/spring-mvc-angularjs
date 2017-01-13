@@ -14,6 +14,7 @@ Medium Priority
 #De implementat template HTML pentru lucruri repetitive ::: tmpl_html
 DONE - De optimizat paginatie ::: paginatie_optim
 #De optimizat filtrele, sa se faca inainte de paginatie ::: filtre_pagin
+#De implementat Yeoman - verificare ::: yeoman_impl
 
 
 Low priority

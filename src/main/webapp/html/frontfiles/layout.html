@@ -17,7 +17,7 @@
 				ng-disabled="!rs.name" ng-hide="editMode"
 				ng-click="addNewFrontFile(rs)">Get files</button>
 
-			<button type="button" class="btn {{clasa}}" ng-disabled="frontfiles.length == 0" ng-click="showDuplicates()">Duplicates</button>
+			<button type="button" class="btn {{clasa}}" ng-disabled="(frontfiles.length == 0) && (clasa=='')" ng-click="showDuplicates()">Duplicates</button>
 		</div>
 	</div>
 </form>

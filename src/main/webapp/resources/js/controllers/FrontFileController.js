@@ -31,7 +31,7 @@ App.controller('FrontFileController', function($scope, $http) {
         });
     };
 
-    $scope.showDuplicates = function() {
+    $scope.showDuplicatesOptim = function() {
         ++$scope.secondClick;
 
         if ($scope.secondClick & 1) {
@@ -39,33 +39,21 @@ App.controller('FrontFileController', function($scope, $http) {
             $scope.clasa='btn-success';
             $scope.resetError();
             $scope.mm = {};
-
             var ss = [];
             var memmory = $scope.frontfiles;
             var i = 0;
-            var k = -1;
+            var indexes = [];
 
             for (i ; i < memmory.length; i++) {
-                debugger;
-                var indexCount = memmory.filter(function(e) { return e.name == memmory[i].name; }).length;
 
-                /* checking to see if elements already added to array */
-                try {
-                    var secCount = ss.filter(function (e) {
-                        return e.name == memmory[i].name;
-                    }).length;
-                }catch( e){
-                    secCount = 0;
-                }
+                indexes.push(memmory[i].name);
 
-                /* memmory contains more elements */
-                if (indexCount > 1 && secCount == 0) {
-                    var getDupli = memmory.filter(function(e) { return e.name == memmory[i].name; });
-                    var j = 0;
+            }
+            for (i=0; i< indexes.length; i++){
 
-                    for (j; j<getDupli.length; j++){
-                        ss.push(getDupli[j]);
-                    }
+                if (indexes.indexOf(indexes[i]) != indexes.lastIndexOf(indexes[i])) {
+
+                    ss.push(memmory[i]);
 
                 }
 
@@ -74,6 +62,76 @@ App.controller('FrontFileController', function($scope, $http) {
             $scope.frontfiles = ss;
 
             ss = [];
+        }else {
+            $scope.clasa='';
+            $scope.fetchFrontFilesList();
+        }
+    };
+
+    $scope.showDuplicates = function() {
+        ++$scope.secondClick;
+        debugger;
+        var inceput = performance.now();
+
+        if ($scope.secondClick & 1) {
+
+            $scope.clasa='btn-success';
+            $scope.resetError();
+            $scope.mm = {};
+            var ss = [];
+            var temp = [];
+            var num = [];
+
+
+            var memmory = $scope.frontfiles;
+            var i = 0;
+            var indexes = 0;
+
+            for (i ; i < memmory.length; i++) {
+
+                var j = i+1;
+                var firstPass = 0;
+                var k =0;
+                var allready=0;
+                var l = 0;
+                for (l; l<num.length; l++){
+
+                    if (num[l] == i){
+                        indexes = 1;
+                    }
+
+                }
+
+                if (indexes == 0) {
+                    for (j; j < memmory.length; j++) {
+
+                        if (memmory[j].name == memmory[i].name) {
+                            num.push(j);
+                            if (firstPass == 0) {
+                                firstPass = 1;
+                                ss.push(memmory[i]);
+                            }
+                            ss.push(memmory[j]);
+                        }
+
+                    }
+                }
+
+
+            }
+            var h= [];
+            var k=0;
+            var primSfarsit = performance.now();
+            console.log("Call to doSomething took prim:" + (primSfarsit - inceput) + " milliseconds.");
+
+            $scope.frontfiles = ss;
+            ss = [];
+
+            var sfarsit = performance.now();
+            console.log("Call to doSomething took total" + (sfarsit - inceput) + " milliseconds.");
+            console.log("Call to doSomething took sec:" + (sfarsit - primSfarsit) + " milliseconds.");
+
+            debugger;
         }else {
             $scope.clasa='';
             $scope.fetchFrontFilesList();
