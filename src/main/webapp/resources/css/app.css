@@ -39,7 +39,7 @@
 .trains{
     margin-left: 100px;
 }
-.railwaystations{
+.frontfiles{
     margin-left: 100px;
 }
 
@@ -65,3 +65,14 @@
 /*{*/
     /*background-color:green;*/
 /*}*/
+/*.reactive:focus {*/
+    /*outline-color: #761c19 !important;*/
+/*}*/
+
+
+/*setari generale butoane*/
+button, input[type="button"], input[type="submit"] {
+    outline-color: #ffffff !important;
+
+}
+/*--*/
