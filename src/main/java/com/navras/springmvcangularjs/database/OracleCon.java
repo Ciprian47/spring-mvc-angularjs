@@ -28,7 +28,7 @@ public class OracleCon{
 
     public static void getSql(String sql, String column) {
         Connection con = null;
-        HashMap<String, String> resp = null;
+        HashMap<String, String> resp = new HashMap<>();
         String multiCols[] = new String[1];
         int cont = 0;
         if (!column.trim().isEmpty() && !column.trim().equals("") && !column.contains("*")) {
@@ -62,7 +62,6 @@ public class OracleCon{
                         if (numeCol.toUpperCase().equals(multiCols[i].toUpperCase())) {
 
                             if (multiCols[i] != null && rs.getString(numeCol) != null){
-                                resp.put("ceva","altceva");
                                 resp.put(multiCols[i],rs.getString(numeCol));
                             }
 
