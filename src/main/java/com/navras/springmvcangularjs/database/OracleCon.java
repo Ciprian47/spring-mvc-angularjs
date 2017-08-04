@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
+import java.util.HashMap;
+
 public class OracleCon{
 
     final Logger logger = LoggerFactory.getLogger("OracleCon");
@@ -12,52 +14,86 @@ public class OracleCon{
 
     }
 
-    public String getSql(String sql, String column){
-        initialize();
+//    public String getSql(String sql, String column){
+//        initialize();
+//
+//
+//        return "";
+//    }
 
+    public static void main(String args[]){
+        OracleCon.getSql("select * from prima where id=2", "id,text");
 
-        return "";
     }
 
-    public void initialize(){
+    public static void getSql(String sql, String column) {
         Connection con = null;
-        int count=0;
-        try{
+        HashMap<String, String> resp = null;
+        String multiCols[] = new String[1];
+        int cont = 0;
+        if (!column.trim().isEmpty() && !column.trim().equals("") && !column.contains("*")) {
+        try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","cld","cld");
-            Statement stmt=con.createStatement();
+            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "cld", "cld");
+            Statement stmt = con.createStatement();
 
-            ResultSet rs=stmt.executeQuery("select * from prima");
+            ResultSet rs = stmt.executeQuery(sql);
 
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int columnsNumber = rsmd.getColumnCount();
+            ResultSetMetaData rsCols = rs.getMetaData();
+            int numberOfCols = rsCols.getColumnCount();
+            int comaNumber = 1;
 
-                while (rs.next()) {
+            if (column.contains(",")) {
+                comaNumber = column.split(",").length;
+                multiCols = column.split(",");
+            }else{
+                multiCols[0]=column;
+            }
+
+            while (rs.next()) {
+
+                for (cont = 1; cont <= numberOfCols; cont++) {
+
+                    String numeCol = rsCols.getColumnName(cont);
+
+                    int i = 0;
+                    for (i = 0; i < comaNumber; i++){
+
+                        if (numeCol.toUpperCase().equals(multiCols[i].toUpperCase())) {
+
+                            if (multiCols[i] != null && rs.getString(numeCol) != null){
+                                resp.put("ceva","altceva");
+                                resp.put(multiCols[i],rs.getString(numeCol));
+                            }
 
 
-                    for (count=1; count<=columnsNumber; count++){
-                        String numeCol= rsmd.getColumnName(count);
-                        String checkSte =numeCol.substring(0, 1);
-                 rsmd.getColumnName(count);
-                rs.getString(rsmd.getColumnName(count));
+
+
+//                        return rs.getString(numeCol);
+                        }
+
                     }
                 }
+            }
+            System.out.println(resp);
 
 
 //step5 close the connection object
-            con.close();
+//            con.close();
 
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
-        }finally {
+        } finally {
             try {
                 if (con != null) {
                     con.close();
                 }
-            }catch(Exception e){
-                logger.error("Canot close db connection: " + e);
+            } catch (Exception e) {
+//                logger.error("Canot close db connection: " + e);
+                System.out.println(e);
             }
         }
+    }
 
     }
 }
