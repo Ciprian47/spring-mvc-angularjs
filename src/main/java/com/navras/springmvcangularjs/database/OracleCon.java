@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class OracleCon{
 
-    final Logger logger = LoggerFactory.getLogger("OracleCon");
+    final static Logger logger = LoggerFactory.getLogger("OracleCon");
 
     private OracleCon(){
 
@@ -22,57 +22,67 @@ public class OracleCon{
 //    }
 
     public static void main(String args[]){
-        OracleCon.getSql("select * from prima", "id,text", "GET");
+        OracleCon.initSql("insert into prima (id, text) values (5, 'cinci')", "id,text", "SET");
 
     }
 
-    public static void getSql(String sql, String column, String action) {
+    public static void initSql(String sql, String column, String action) {
         Connection con = null;
         HashMap<String, String> resp = new HashMap<>();
         String multiCols[] = new String[1];
         int cont = 0;
-        if (!column.trim().isEmpty() && !column.trim().equals("") && !column.contains("*")) {
+//        if (!column.trim().isEmpty() && !column.trim().equals("") && !column.contains("*")) {
             try {
-                //DB initialization
-                Class.forName("oracle.jdbc.driver.OracleDriver");
-                con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "cld", "cld");
-                Statement stmt = con.createStatement();
+                if (!sql.trim().isEmpty() && !sql.trim().equals("")) {
+                    //DB initialization
+                    Class.forName("oracle.jdbc.driver.OracleDriver");
+                    con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "cld", "cld");
+                    Statement stmt = con.createStatement();
 
-                //executing sql statement
-                ResultSet rs = stmt.executeQuery(sql);
+                    logger.debug(sql);
 
-                //geting result set column names
-                ResultSetMetaData rsCols = rs.getMetaData();
-                int numberOfCols = rsCols.getColumnCount();
-                int comaNumber = 1;
+                    if (!column.trim().isEmpty() && !column.trim().equals("") && !column.contains("*") && action.equals("GET")) {
+                        //executing sql statement
+                        ResultSet rs = stmt.executeQuery(sql);
 
-                if (column.contains(",")) {
-                    comaNumber = column.split(",").length;
-                    multiCols = column.split(",");
+                        //geting result set column names
+                        ResultSetMetaData rsCols = rs.getMetaData();
+                        int numberOfCols = rsCols.getColumnCount();
+                        int comaNumber = 1;
 
-                }else{
-                    multiCols[0]=column;
+                        if (column.contains(",")) {
+                            comaNumber = column.split(",").length;
+                            multiCols = column.split(",");
 
-                }
+                        } else {
+                            multiCols[0] = column;
 
-                while (rs.next()) {
-                    for (cont = 1; cont <= numberOfCols; cont++) {
-                        String numeCol = rsCols.getColumnName(cont);
-                        int i = 0;
+                        }
 
-                        for (i = 0; i < comaNumber; i++){
-                            if (numeCol.toUpperCase().equals(multiCols[i].toUpperCase())) {
+                        while (rs.next()) {
+                            for (cont = 1; cont <= numberOfCols; cont++) {
+                                String numeCol = rsCols.getColumnName(cont);
+                                int i = 0;
 
-                                if (multiCols[i] != null && rs.getString(numeCol) != null){
-                                    resp.put(multiCols[i],rs.getString(numeCol));
+                                for (i = 0; i < comaNumber; i++) {
+                                    if (numeCol.toUpperCase().equals(multiCols[i].toUpperCase())) {
 
+                                        if (multiCols[i] != null && rs.getString(numeCol) != null) {
+                                            resp.put(multiCols[i], rs.getString(numeCol));
+
+                                        }
+                                    }
                                 }
                             }
                         }
+                        System.out.println(resp);
+                    }
+
+                    if (action.equals("SET")) {
+                        //executing sql statement
+                        ResultSet rs = stmt.executeQuery(sql);
                     }
                 }
-                System.out.println(resp);
-
             } catch (Exception e) {
                 System.out.println(e);
             } finally {
@@ -86,5 +96,5 @@ public class OracleCon{
                 }
             }
         }
-    }
+//    }
 }
