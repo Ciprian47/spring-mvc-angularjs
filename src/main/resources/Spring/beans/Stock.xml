@@ -9,7 +9,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
     </bean>
 
     <!-- Stock Data Access Object -->
-    <bean id="stockDao" class="com.mkyong.stock.dao.impl.StockDaoImpl" >
+    <bean id="stockDao" class="com.navras.springmvcangularjs.service.StockDaoImpl" >
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 

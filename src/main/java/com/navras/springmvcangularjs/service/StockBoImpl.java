@@ -1,7 +1,9 @@
 package com.navras.springmvcangularjs.service;
 
 import com.navras.springmvcangularjs.beans.Stock;
+import org.springframework.stereotype.Service;
 
+@Service("stockBo")
 public class StockBoImpl implements StockBo{
 
     StockDao stockDao;
