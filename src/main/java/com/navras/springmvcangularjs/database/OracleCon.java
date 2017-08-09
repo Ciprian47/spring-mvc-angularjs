@@ -2,9 +2,11 @@ package com.navras.springmvcangularjs.database;
 
 import com.navras.springmvcangularjs.beans.Stock;
 import com.navras.springmvcangularjs.service.StockBo;
+import com.navras.springmvcangularjs.service.StockBoImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.sql.*;
 import java.util.HashMap;
@@ -24,11 +26,13 @@ public class OracleCon{
 //        return "";
 //    }
 
-    public static void main(String args[]){
+    public static void main(String args[]) {
 //        OracleCon.initSql("insert into prima (id, text) values (5, 'cinci')", "id,text", "SET");
-        ContextLoaderListener appContext = new ContextLoaderListener();
+        ApplicationContext appContext =
+                new ClassPathXmlApplicationContext("spring/config/BeanLocations.xml");
 
-        StockBo stockBo = (StockBo)appContext.getContextLoader();
+//        StockBo stockBo = (StockBo)appContext.getBean("stockBo");
+        StockBo stockBo = new StockBoImpl();
 
         /** insert **/
         Stock stock = new Stock();
