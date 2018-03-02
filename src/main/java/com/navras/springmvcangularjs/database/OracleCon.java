@@ -3,6 +3,8 @@ package com.navras.springmvcangularjs.database;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.io.FileFilter;
 import java.sql.*;
 import java.util.HashMap;
 
@@ -22,7 +24,37 @@ public class OracleCon{
 //    }
 
     public static void main(String args[]){
-        OracleCon.getSql("select * from prima where id=2", "id,text");
+        //OracleCon.getSql("select * from prima where id=2", "id,text");
+        metRecurs("D:\\PROJECTS\\angularjs-springmvc-sample-boot\\target\\classes\\artifacts\\coding_tailors_war_exploded",1);
+    }
+
+    public static void metRecurs(String path, Integer count){
+        if (count > 50) {
+            return;
+        }
+        File[] directories = new File(path).listFiles(new FileFilter() {
+            @Override
+            public boolean accept(File file) {
+                return file.isDirectory();
+            }
+        });
+        int i = 0;
+        for (i=0; i<directories.length; i++){
+            String str = directories[i].toString().substring(0, directories[i].toString().lastIndexOf("\\"));
+            int v = i+1;
+            File file = new File(str+"\\"+v);
+
+// File (or directory) with new name
+            File file2 = new File(directories[i].toString());
+
+            if(file2.renameTo(file)){
+                metRecurs(str+"\\"+v, count+1);
+            }else{
+                metRecurs(directories[i].toString(), count+1);
+            }
+
+
+        }
 
     }
 
